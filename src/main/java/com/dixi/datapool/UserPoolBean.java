@@ -35,7 +35,8 @@ public class UserPoolBean {
         return userPool;
     }
 
-    public void addUser(UserLogin userLogin){
+    public synchronized void addUser(UserLogin userLogin){
         this.getUserPool().add(userLogin);
     }
+
 }

@@ -16,4 +16,12 @@ public class RestResultGenerator {
         return restResult;
 
     }
+
+    public static <T>RestResult<T> genErrorResult(String message, T data){
+
+        RestResult<T> restResult=RestResult.newInstance();
+        restResult.setMessage(message);
+        restResult.setData(data);
+        return restResult;
+    }
 }

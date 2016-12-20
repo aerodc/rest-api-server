@@ -3,6 +3,7 @@ package com.dixi.controller;
 import com.dixi.bean.UserLogin;
 import com.dixi.common.RestResult;
 import com.dixi.common.RestResultGenerator;
+import com.dixi.exception.UserNotFoundException;
 import com.dixi.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,13 @@ public class AuthenticationController {
     @RequestMapping(value="/auth", method = RequestMethod.POST)
     public RestResult<String> auth(@Valid @RequestBody UserLogin userLogin){
 
-        String result = authenticationService.authUser(userLogin);
-        return RestResultGenerator.genSucessResult("result is",result);
+        String result;
+        try {
+            result = authenticationService.authUser(userLogin);
+            return RestResultGenerator.genSucessResult("OK",result);
+
+        } catch (UserNotFoundException e) {
+            return RestResultGenerator.genErrorResult("KO",e.getMessage());
+        }
     }
 }
