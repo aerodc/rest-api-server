@@ -1,7 +1,7 @@
 package com.dixi.service;
 
 import com.dixi.bean.UserLogin;
-import com.dixi.datapool.UserDataPool;
+import com.dixi.datapool.UserPoolBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,17 @@ public class AuthenticationService {
 
 
     @Autowired
-    UserDataPool userDataPool ;
+    UserPoolBean userPoolBean;
 
     public String authUser(UserLogin userLogin){
 
-        boolean isExist=userDataPool.getUserPool().contains(userLogin);
+        boolean isExist=userPoolBean.getUserPool().contains(userLogin);
 
         if(isExist){
             return "user exists";
         }else{
-            userDataPool.addUser(userLogin);
-            System.out.println("userDatapool length "+userDataPool.getUserPool().size());
+            userPoolBean.addUser(userLogin);
+            System.out.println("userDatapool length "+userPoolBean.getUserPool().size());
             return "user not exists!";
         }
 
