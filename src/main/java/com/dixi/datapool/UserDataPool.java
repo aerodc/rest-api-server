@@ -13,12 +13,10 @@ import java.util.List;
 @Configuration
 public class UserDataPool {
 
-    private static List<UserLogin> userPool = Collections.emptyList();
+    private List<UserLogin> userPool = Collections.emptyList();
 
     public UserDataPool() {
-        if(userPool.isEmpty()){
-            this.userPool = usersGenerator();
-        }
+        this.userPool = usersGenerator();
     }
 
     private List<UserLogin> usersGenerator(){
