@@ -1,7 +1,7 @@
 package com.dixi.datapool;
 
 import com.dixi.bean.UserLogin;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by liudixi on 19/12/16.
  */
-@Component
+@Configuration
 public class UserDataPool {
 
     private static List<UserLogin> userPool = Collections.emptyList();
@@ -21,12 +21,12 @@ public class UserDataPool {
         }
     }
 
-    private static List<UserLogin> usersGenerator(){
+    private List<UserLogin> usersGenerator(){
         UserLogin user1= new UserLogin("dev");
         UserLogin user2= new UserLogin("test");
         UserLogin user3= new UserLogin("demo");
 
-        List<UserLogin> result = new ArrayList<UserLogin>();
+        List<UserLogin> result = new ArrayList<>();
 
         result.add(user1);
         result.add(user2);
@@ -35,7 +35,7 @@ public class UserDataPool {
         return result;
     }
 
-    public static List<UserLogin> getUserPool() {
+    public List<UserLogin> getUserPool() {
         return userPool;
     }
 
